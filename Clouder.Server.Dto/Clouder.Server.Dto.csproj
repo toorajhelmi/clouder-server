@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+    <Compile Remove="Item.cs" />
+    <Compile Remove="LotteryDto.cs" />
+    <Compile Remove="ItemDto.cs" />
+    <Compile Remove="StoreDto.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Clouder.Server.Entity\Clouder.Server.Entity.csproj" />
+  </ItemGroup>
+</Project>
