@@ -50,6 +50,17 @@ namespace Clouder.Server.Api.Function
         {
             try
             {
+                return new OkObjectResult(new List<FactoryDto>
+                {
+                    new FactoryDto { Id = "1", Name = "Factory 1",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
+                    new FactoryDto { Id = "2", Name = "Factory 2", Description = "E-Commerce"},
+                    new FactoryDto { Id = "3", Name = "Factory 3", Description = "Ticketing"},
+                    new FactoryDto { Id = "4", Name = "Factory 4", Description = "Trading"},
+                    new FactoryDto { Id = "5", Name = "Factory 5", Description = "Media"},
+                    new FactoryDto { Id = "6", Name = "Factory 6", Description = "Multi-tennant"},
+                });
+
                 var userName = req.Parse("userName").ToLower();
                 var password = req.Parse("password");
                 var user = await NakedF.Get<Entity.User, UserDto>(colId,
