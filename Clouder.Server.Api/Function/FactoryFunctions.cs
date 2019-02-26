@@ -43,6 +43,17 @@ namespace Clouder.Server.Api.Function
             });
         }
 
+        [FunctionName("Factory_Update")]
+        public static async Task<IActionResult> UpdateFactory(
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req,
+            TraceWriter log)
+        {
+            var factory = await req.Parse<FactoryDto>();
+            return new OkResult();
+
+            //return await HttpF.Update<Entity.Factory>(req, colId);
+        }
+
         [FunctionName("Factory_Get")]
         public static async Task<IActionResult> Get(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequest req,
@@ -75,14 +86,6 @@ namespace Clouder.Server.Api.Function
             TraceWriter log)
         {
             return new OkObjectResult(null);
-        }
-
-        [FunctionName("Factory_Update")]
-        public static async Task<IActionResult> Update(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req,
-            TraceWriter log)
-        {
-            return await HttpF.Update<Entity.Factory>(req, colId);
         }
     }
 }

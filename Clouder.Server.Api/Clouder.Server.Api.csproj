@@ -32,14 +32,70 @@
     <None Remove="bin\Debug\netstandard2.0\Test_Basic\function.json" />
     <None Remove="bin\Debug\netstandard2.0\Test_DbConnection\function.json" />
     <None Remove="bin\Debug\netstandard2.0\Test_Basic\function.json" />
+    <None Remove="Clouder.Server.Api.csproj" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Create\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Get\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Add\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Update\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Create\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Get\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Add\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Activate\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Update\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_IsUsernameTaken\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Test_DbConnection\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Test_Basic\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Create\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Get\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Add\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Update\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Create\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Get\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Add\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Activate\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Update\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_IsUsernameTaken\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Test_DbConnection\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Test_Basic\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Create\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Get\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Add\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Update\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Create\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Get\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Add\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Activate\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Update\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_IsUsernameTaken\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Test_DbConnection\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Test_Basic\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Create\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Get\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Add\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Update\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Create\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Get\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Add\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Activate\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Update\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_IsUsernameTaken\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Test_DbConnection\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Test_Basic\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Create\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Get\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Add\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Factory_Update\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Create\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Get\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Add\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Activate\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_Update\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\User_IsUsernameTaken\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Test_DbConnection\function.json" />
+    <None Remove="bin\Debug\netstandard2.0\Test_Basic\function.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="**/*" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="local.settings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Clouder.Server.Dto\Clouder.Server.Dto.csproj" />
