@@ -8,7 +8,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Blob;
 
-namespace Clouder.Server.Api.Extension
+namespace Clouder.Server.Helper.Azure
 {
     public static class ImageContainer
     {

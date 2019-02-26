@@ -1,21 +1,19 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Clouder.Server.Api.Extension;
+using Clouder.Server.Api.Constant;
+using Clouder.Server.Dto;
 using Clouder.Server.Entity;
+using Clouder.Server.Helper.Azure;
+using Clouder.Server.Helper.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.Azure.WebJobs.Host;
-using Clouder.Server.Dto;
+using Microsoft.Extensions.Logging;
 using SendGrid.Helpers.Mail;
-using Clouder.Server.Api.Constant;
-using Microsoft.WindowsAzure.Storage.Blob;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using System;
 
 namespace Clouder.Server.Api.Function
 {
@@ -24,9 +22,6 @@ namespace Clouder.Server.Api.Function
         private const int MaxItemCount = 100;
         private const string colId = "User";
         private static FeedOptions feedOptions = new FeedOptions { MaxItemCount = MaxItemCount };
-        private static CloudBlobContainer storeImagesContainer;
-
-        public static CloudBlobContainer StoreImagesContainer => storeImagesContainer ?? ImageContainer.GetContainer("store-images", out storeImagesContainer);
 
         static UserFunctions()
         {
@@ -35,7 +30,7 @@ namespace Clouder.Server.Api.Function
         [FunctionName("User_Create")]
         public static async Task<IActionResult> CreateUser(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequest req,
-            TraceWriter log)
+            ILogger log)
         {
             return await HttpF.Create(req, colId, new IndexingPolicy(new HashIndex(DataType.Number))
             {
@@ -46,7 +41,7 @@ namespace Clouder.Server.Api.Function
         [FunctionName("User_Get")]
         public static async Task<IActionResult> Get(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequest req,
-            TraceWriter log)
+            ILogger log)
         {
             try
             {
@@ -99,7 +94,7 @@ namespace Clouder.Server.Api.Function
         [FunctionName("User_Add")]
         public static async Task<IActionResult> Add(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req,
-            TraceWriter log)
+            ILogger log)
         {
             var user = await req.Parse<Entity.User>();
             user.ActivationCode = System.Guid.NewGuid().ToString();
@@ -107,10 +102,10 @@ namespace Clouder.Server.Api.Function
             user.Email = user.Email.ToLower();
             user = await NakedF.Add<Entity.User>(user, colId);
 
-            SendEmail(Localization.Instance.ActivateAcount,
-                      new EmailAddress { Email = user.Email, Name = user.FullName },
-                      "content",
-                      user);
+            //SendEmail(Localization.Instance.ActivateAcount,
+                      //new EmailAddress { Email = user.Email, Name = user.FullName },
+                      //"content",
+                      //user);
 
             return new OkObjectResult(user);
         }
@@ -118,7 +113,7 @@ namespace Clouder.Server.Api.Function
         [FunctionName("User_Activate")]
         public static async Task<IActionResult> Activate(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequest req,
-            TraceWriter log)
+            ILogger log)
         {
             var activationCode = req.Parse("c");
             var userId = req.Parse("uid");
@@ -158,7 +153,7 @@ namespace Clouder.Server.Api.Function
         [FunctionName("User_Update")]
         public static async Task<IActionResult> Update(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req,
-            TraceWriter log)
+            ILogger log)
         {
             return await HttpF.Update<Entity.User>(req, colId);
         }
@@ -166,7 +161,7 @@ namespace Clouder.Server.Api.Function
         [FunctionName("User_IsUsernameTaken")]
         public static async Task<IActionResult> IsUsernameTaken(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequest req,
-            TraceWriter log)
+            ILogger log)
         {
             var userName = req.Parse("userName");
             var email = req.Parse("email");
@@ -190,19 +185,19 @@ namespace Clouder.Server.Api.Function
             return new OkObjectResult(accountExistsRepsonse);
         }
 
-        private static async void SendEmail(string subject, EmailAddress to, string template, Entity.User user)
-        {
-            var content = template
-                .Replace("[BUYER]", user.Username)
-                .Replace("[SELLER]", user.Username)
-                .Replace("[USER-NAME]", user.Username)
-                .Replace("[PASSWORD]", user.Password)
-                .Replace("[ACTIVATION-LINK]", $"<a href='{string.Format(Configuration.ActivationLink, user.Id, user.ActivationCode)}'>{Localization.Instance.ActivateAcount}<a/>");
+        //private static async void SendEmail(string subject, EmailAddress to, string template, Entity.User user)
+        //{
+        //    var content = template
+        //        .Replace("[BUYER]", user.Username)
+        //        .Replace("[SELLER]", user.Username)
+        //        .Replace("[USER-NAME]", user.Username)
+        //        .Replace("[PASSWORD]", user.Password)
+        //        .Replace("[ACTIVATION-LINK]", $"<a href='{string.Format(Configuration.ActivationLink, user.Id, user.ActivationCode)}'>{Localization.Instance.ActivateAcount}<a/>");
 
-            await Email.Send(Configuration.GeneralSupportEmail,
-                             subject,
-                             new EmailAddress { Email = user.Email, Name = user.FullName },
-                             content);
-        }
+        //    await Email.Send(Configuration.GeneralSupportEmail,
+        //                     subject,
+        //                     new EmailAddress { Email = user.Email, Name = user.FullName },
+        //                     content);
+        //}
     }
 }

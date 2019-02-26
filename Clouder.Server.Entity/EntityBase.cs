@@ -16,12 +16,4 @@ namespace Clouder.Server.Entity
             Id = id;
         }
     }
-
-    public static class EntityExtensions
-    {
-        public static TDto To<TDto>(this EntityBase from)
-        {
-            return (TDto)Activator.CreateInstance(typeof(TDto), from);
-        }
-    }
 }

@@ -3,13 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Admin", "Clouder.Server.Admin\Clouder.Server.Admin.csproj", "{644042A8-5B01-4DFA-B30D-39F2749B4592}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Api", "Clouder.Server.Api\Clouder.Server.Api.csproj", "{CDF4F478-5B33-4269-8383-F80E25DA7D60}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Api.Test", "Clouder.Server.Api.Test\Clouder.Server.Api.Test.csproj", "{2E7D0751-99C3-40BB-B34C-F242FD075254}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Dto", "Clouder.Server.Dto\Clouder.Server.Dto.csproj", "{766473DC-13D8-4DE0-BCB3-483AD48890F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Entity", "Clouder.Server.Entity\Clouder.Server.Entity.csproj", "{2C82131D-93E3-4198-84DC-713CBF10EAB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Contract", "Clouder.Server.Contract\Clouder.Server.Contract.csproj", "{5AF36B90-B06E-4E07-9D77-748BDD573C32}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{4EC23DEE-387B-4C27-B353-0E56684E4371}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Helper", "Clouder.Server.Helper\Clouder.Server.Helper.csproj", "{94AA8AAF-D64F-4A3A-925A-A091C9934CD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Api", "Clouder.Server.Api\Clouder.Server.Api.csproj", "{99E2A317-B3C7-4D0C-AD07-6E8F9518730A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +27,6 @@ Global
 		{644042A8-5B01-4DFA-B30D-39F2749B4592}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{644042A8-5B01-4DFA-B30D-39F2749B4592}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{644042A8-5B01-4DFA-B30D-39F2749B4592}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CDF4F478-5B33-4269-8383-F80E25DA7D60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CDF4F478-5B33-4269-8383-F80E25DA7D60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CDF4F478-5B33-4269-8383-F80E25DA7D60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CDF4F478-5B33-4269-8383-F80E25DA7D60}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2E7D0751-99C3-40BB-B34C-F242FD075254}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2E7D0751-99C3-40BB-B34C-F242FD075254}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E7D0751-99C3-40BB-B34C-F242FD075254}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,5 +39,20 @@ Global
 		{2C82131D-93E3-4198-84DC-713CBF10EAB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C82131D-93E3-4198-84DC-713CBF10EAB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C82131D-93E3-4198-84DC-713CBF10EAB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AF36B90-B06E-4E07-9D77-748BDD573C32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AF36B90-B06E-4E07-9D77-748BDD573C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AF36B90-B06E-4E07-9D77-748BDD573C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AF36B90-B06E-4E07-9D77-748BDD573C32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94AA8AAF-D64F-4A3A-925A-A091C9934CD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94AA8AAF-D64F-4A3A-925A-A091C9934CD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94AA8AAF-D64F-4A3A-925A-A091C9934CD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94AA8AAF-D64F-4A3A-925A-A091C9934CD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99E2A317-B3C7-4D0C-AD07-6E8F9518730A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99E2A317-B3C7-4D0C-AD07-6E8F9518730A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99E2A317-B3C7-4D0C-AD07-6E8F9518730A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99E2A317-B3C7-4D0C-AD07-6E8F9518730A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2E7D0751-99C3-40BB-B34C-F242FD075254} = {4EC23DEE-387B-4C27-B353-0E56684E4371}
 	EndGlobalSection
 EndGlobal

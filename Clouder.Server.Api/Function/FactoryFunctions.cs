@@ -1,21 +1,17 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Clouder.Server.Api.Extension;
-using Clouder.Server.Entity;
+using Clouder.Server.Dto;
+using Clouder.Server.Helper.Azure;
+using Clouder.Server.Helper.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.Azure.WebJobs.Host;
-using Clouder.Server.Dto;
-using SendGrid.Helpers.Mail;
-using Clouder.Server.Api.Constant;
-using Microsoft.WindowsAzure.Storage.Blob;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using System;
+using Microsoft.Extensions.Logging;
 
 namespace Clouder.Server.Api.Function
 {
@@ -24,9 +20,6 @@ namespace Clouder.Server.Api.Function
         private const int MaxItemCount = 100;
         private const string colId = "Factory";
         private static FeedOptions feedOptions = new FeedOptions { MaxItemCount = MaxItemCount };
-        private static CloudBlobContainer storeImagesContainer;
-
-        public static CloudBlobContainer StoreImagesContainer => storeImagesContainer ?? ImageContainer.GetContainer("store-images", out storeImagesContainer);
 
         static FactoryFunctions()
         {
@@ -35,7 +28,7 @@ namespace Clouder.Server.Api.Function
         [FunctionName("Factory_Create")]
         public static async Task<IActionResult> CreateFactory(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequest req,
-            TraceWriter log)
+            ILogger log)
         {
             return await HttpF.Create(req, colId, new IndexingPolicy(new HashIndex(DataType.Number))
             {
@@ -46,7 +39,7 @@ namespace Clouder.Server.Api.Function
         [FunctionName("Factory_Update")]
         public static async Task<IActionResult> UpdateFactory(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req,
-            TraceWriter log)
+            ILogger log)
         {
             var factory = await req.Parse<FactoryDto>();
             return new OkResult();
@@ -57,7 +50,7 @@ namespace Clouder.Server.Api.Function
         [FunctionName("Factory_Get")]
         public static async Task<IActionResult> Get(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequest req,
-            TraceWriter log)
+            ILogger log)
         {
             try
             {
@@ -83,7 +76,7 @@ namespace Clouder.Server.Api.Function
         [FunctionName("Factory_Add")]
         public static async Task<IActionResult> Add(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req,
-            TraceWriter log)
+            ILogger log)
         {
             return new OkObjectResult(null);
         }

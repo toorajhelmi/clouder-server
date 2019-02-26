@@ -3,7 +3,7 @@ using System.Net.Http;
 using Microsoft.Azure.KeyVault;
 using Microsoft.Azure.Services.AppAuthentication;
 
-namespace Clouder.Server.Api.Extension
+namespace Clouder.Server.Helper.Azure
 {
     public static class KeyVault
     {

@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Clouder.Server.Entity;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents.Linq;
 
-namespace Clouder.Server.Api.Extension
+namespace Clouder.Server.Helper.Azure
 {
     public static class DocumentClientEx
 	{
@@ -45,7 +44,7 @@ namespace Clouder.Server.Api.Extension
 		}
 
 		public static async Task<T> GetAsync<T>(this DocumentClient client, string colId, string id)
-			where T : EntityBase
+			where T : Document
 		{
             var resource = (await client.ReadDocumentAsync(UriFactory.CreateDocumentUri(DbId, colId, id))).Resource;
             return (dynamic)resource;
@@ -53,7 +52,7 @@ namespace Clouder.Server.Api.Extension
 
 		public static async Task<List<T>> GetAsync<T>(this DocumentClient client, string colId, FeedOptions feedOptions, 
 		                                              Func<IOrderedQueryable<T>, IQueryable<T>> predicate)
-            where T : EntityBase
+            where T : Document
         {
 			var query = predicate(client.CreateDocumentQuery<T>(UriFactory.CreateDocumentCollectionUri(DbId, colId), feedOptions));          
 			var docQuery = query.AsDocumentQuery();
@@ -67,19 +66,19 @@ namespace Clouder.Server.Api.Extension
         }
       
 		public static async Task<Document> AddAsync<T>(this DocumentClient client, string colId, T entity)
-			where T : EntityBase
+			where T : Document
 		{        
 			return await client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri(DbId, colId), entity);
 		}
 
         public static async Task<Document> DeleteAync<T>(this DocumentClient client, string colId, T entity)
-            where T : EntityBase
+            where T : Document
         {
             return await client.DeleteDocumentAsync(UriFactory.CreateDocumentUri(DbId, colId, entity.Id));
         }
 
 		public static async Task<Document> UpdateAsync<T>(this DocumentClient client, string colId, T entity)
-            where T : EntityBase
+            where T : Document
         {
             return await client.ReplaceDocumentAsync(UriFactory.CreateDocumentUri(DbId, colId, entity.Id), entity);
         }      

@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Clouder.Server.Api.Util;
-using Clouder.Server.Entity;
+using Clouder.Server.Helper.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Newtonsoft.Json;
-using Clouder.Server.Dto;
 
-namespace Clouder.Server.Api.Extension
+namespace Clouder.Server.Helper.Azure
 {
     public static class NakedF
 	{
@@ -25,28 +23,27 @@ namespace Clouder.Server.Api.Extension
 		}
 
 		public static async Task<T> Add<T>(T entity, string colId)
-			where T : EntityBase
+			where T : Document
 		{
-			DataAnotationsValidator.TryValidate(entity);
             await DocumentClient.AddAsync(colId, entity);
             return entity;
 		}
 
         public static async Task Delete<T>(T entity, string colId)
-            where T : EntityBase
+            where T : Document
         {
             await DocumentClient.DeleteAync(colId, entity);
         }
 
         public static async Task<T> Get<T>(string id, string colId)
-            where T : EntityBase
+            where T : Document
         {
             var entity = await DocumentClient.GetAsync<T>(colId, id);
             return entity;
         }
 
         public static async Task<T> Get<T>(HttpRequest req, string colId)
-            where T : EntityBase
+            where T : Document
         {
             var id = req.Parse("id");
             var entity = await DocumentClient.GetAsync<T>(colId, id);
@@ -54,7 +51,7 @@ namespace Clouder.Server.Api.Extension
         }
 
         public static async Task<TDto> Get<T, TDto>(HttpRequest req, string colId)
-            where T : EntityBase, new()
+            where T : Document, new()
 		{
 			var id = req.Parse("id");
             var entity = await DocumentClient.GetAsync<T>(colId, id);
@@ -63,21 +60,21 @@ namespace Clouder.Server.Api.Extension
 
         public static async Task<List<T>> Get<T>(string colId, FeedOptions feedOptions,
                                                  Func<IOrderedQueryable<T>, IQueryable<T>> predicate)
-            where T : EntityBase
+            where T : Document
         {
             return await DocumentClient.GetAsync<T>(colId, feedOptions, predicate);
         }
 
         public static async Task<List<TDto>> Get<T, TDto>(string colId, FeedOptions feedOptions,
                                                           Func<IOrderedQueryable<T>, IQueryable<T>> predicate)
-			where T : EntityBase
+			where T : Document
 		{
             var entities = await DocumentClient.GetAsync<T>(colId, feedOptions, predicate);
             return entities.Select(e => e.To<TDto>()).ToList();
 		}
 
         public static async Task<T> Get<T>(string colId, Func<IOrderedQueryable<T>, IQueryable<T>> predicate)
-           where T : EntityBase
+           where T : Document
         {
             var results = await DocumentClient.GetAsync<T>(colId, new FeedOptions { MaxItemCount = 1 }, predicate);
             if (results.Any())
@@ -91,7 +88,7 @@ namespace Clouder.Server.Api.Extension
         }
 
         public static async Task<TDto> Get<T, TDto>(string colId, Func<IOrderedQueryable<T>, IQueryable<T>> predicate)
-            where T : EntityBase
+            where T : Document
         {
             var results = await DocumentClient.GetAsync<T>(colId, new FeedOptions { MaxItemCount = 1}, predicate);
             if (results.Any())
@@ -105,7 +102,7 @@ namespace Clouder.Server.Api.Extension
         }
 
 		public static async Task Update<T>(HttpRequest req, string colId)
-			where T : EntityBase
+			where T : Document
 		{
 			string body = string.Empty;
 			using (StreamReader reader = new StreamReader(req.Body))
@@ -114,14 +111,12 @@ namespace Clouder.Server.Api.Extension
 			}
 
             var entity = JsonConvert.DeserializeObject<T>(body);
-			DataAnotationsValidator.TryValidate(entity);
             await DocumentClient.UpdateAsync(colId, entity);
 		}
 
         public static async Task Update<T>(T entity, string colId)
-            where T : EntityBase
+            where T : Document
         {
-            DataAnotationsValidator.TryValidate(entity);
             await DocumentClient.UpdateAsync(colId, entity);
         }
 

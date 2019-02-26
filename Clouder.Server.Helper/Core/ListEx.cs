@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Clouder.Server.Api.Extension
+namespace Clouder.Server.Helper.Core
 {
     public static class ListEx
     {

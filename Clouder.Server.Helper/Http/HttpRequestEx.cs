@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
-namespace Clouder.Server.Api.Extension
+namespace Clouder.Server.Helper.Http
 {
     public static class HttpRequestEx
     {

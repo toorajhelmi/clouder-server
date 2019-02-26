@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Clouder.Server.Api.Exceptions;
-using Clouder.Server.Api.Util;
-using Clouder.Server.Entity;
+using Clouder.Server.Helper.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.Azure.WebJobs.Host;
+using Microsoft.Extensions.Logging;
 
-namespace Clouder.Server.Api.Extension
+namespace Clouder.Server.Helper.Azure
 {
     public static class HttpF
     {
@@ -24,7 +22,7 @@ namespace Clouder.Server.Api.Extension
         [FunctionName("Test_DbConnection")]
         public static IActionResult TestDbConnection(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequest req,
-            TraceWriter log)
+            ILogger log)
         {
             try
             {
@@ -39,7 +37,7 @@ namespace Clouder.Server.Api.Extension
         [FunctionName("Test_Basic")]
         public static IActionResult TestBasic(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequest req,
-            TraceWriter log)
+            ILogger log)
         {
             try
             {
@@ -58,10 +56,6 @@ namespace Clouder.Server.Api.Extension
                 await DocumentClient.CreateCollectionAsync(colId, indexingPolicy);
 				return new OkObjectResult("Collection Created");
             }
-            catch (ClouderValidationException e)
-            {
-                return new BadRequestObjectResult(e.ValidationErrors);
-            }
             catch (Exception e)
             {
 				return new BadRequestObjectResult(e.Message);
@@ -69,18 +63,13 @@ namespace Clouder.Server.Api.Extension
 		}
 
 		public static async Task<IActionResult> Add<T, TDto>(HttpRequest req, string colId)
-			where T : EntityBase
+			where T : Document
         {        
             try
             {
-                var entity = await req.Parse<T>();
-                DataAnotationsValidator.TryValidate(entity);           
+                var entity = await req.Parse<T>();         
                 await DocumentClient.AddAsync(colId, entity);
                 return new OkObjectResult(entity.To<TDto>());
-            }
-			catch (ClouderValidationException e)
-            {
-                return new BadRequestObjectResult(e.ValidationErrors);
             }
             catch (Exception e)
             {
@@ -89,7 +78,7 @@ namespace Clouder.Server.Api.Extension
         }    
 
 		public static async Task<IActionResult> Get<T, TDto>(HttpRequest req, string colId)
-            where T : EntityBase
+            where T : Document
 		{
             string id = "";
 
@@ -119,7 +108,7 @@ namespace Clouder.Server.Api.Extension
           
 		public static async Task<IActionResult> Get<T, TDto>(string colId, FeedOptions feedOptions, 
 		                                               Func<IOrderedQueryable<T>, IQueryable<T>> predicate)
-			where T : EntityBase
+			where T : Document
         {
             try
             {
@@ -145,7 +134,7 @@ namespace Clouder.Server.Api.Extension
 
         public static async Task<IActionResult> Get<T, TDto>(string colId,
                                                        Func<IOrderedQueryable<T>, IQueryable<T>> predicate)
-            where T : EntityBase
+            where T : Document
         {
             try
             {
@@ -166,19 +155,14 @@ namespace Clouder.Server.Api.Extension
         }
            
 		public static async Task<IActionResult> Update<T>(HttpRequest req, string colId)
-			where T : EntityBase
+			where T : Document
         {         
             try
             {   
-                var entity = await req.Parse<T>();
-                DataAnotationsValidator.TryValidate(entity);        
+                var entity = await req.Parse<T>();        
                 await DocumentClient.UpdateAsync(colId, entity);          
 				return new OkResult();       
             }         
-			catch (ClouderValidationException e)
-            {
-                return new BadRequestObjectResult(e.ValidationErrors);
-            }
             catch (DocumentClientException dce)
             {
                 if (dce.StatusCode == System.Net.HttpStatusCode.NotFound)
