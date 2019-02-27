@@ -32,7 +32,7 @@ namespace Clouder.Server.Api.Function
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequest req,
             ILogger log)
         {
-            return await HttpF.Create(req, colId, new IndexingPolicy(new HashIndex(DataType.Number))
+            return await HttpF.Create(colId, new IndexingPolicy(new HashIndex(DataType.Number))
             {
                 IndexingMode = IndexingMode.Consistent,
             });

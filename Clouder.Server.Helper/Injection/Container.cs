@@ -6,23 +6,36 @@ namespace Clouder.Server.Helper.Injection
     public class Container
     {
         private readonly IServiceCollection services;
+        private IServiceProvider serviceProvider;
+        private static Container instance;
 
-        public Container()
+        public static Container Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Container();
+                }
+
+                return instance;
+            }
+        }
+
+        private Container()
         {
             services = new ServiceCollection();
         }
 
-        public Container RegisterModule(IModule module = null)
+        public void Register(IModule module)
         {
             module.Load(this.services);
-
-            return this;
+            serviceProvider = services.BuildServiceProvider();
         }
 
-        public IServiceProvider Build()
+        public T Get<T>()
         {
-            var provider = this.services.BuildServiceProvider();
-            return provider;
+            return serviceProvider.GetService<T>();
         }
     }
 }

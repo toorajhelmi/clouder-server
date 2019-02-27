@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Helper", "Cl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Api", "Clouder.Server.Api\Clouder.Server.Api.csproj", "{99E2A317-B3C7-4D0C-AD07-6E8F9518730A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Controller", "Clouder.Server.Controller\Clouder.Server.Controller.csproj", "{64F5E2DB-525F-455B-8339-2E2B16F7244D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Service", "Clouder.Server.Service\Clouder.Server.Service.csproj", "{96670D88-814A-4668-99F2-8AA90CE8789B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{99E2A317-B3C7-4D0C-AD07-6E8F9518730A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99E2A317-B3C7-4D0C-AD07-6E8F9518730A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99E2A317-B3C7-4D0C-AD07-6E8F9518730A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64F5E2DB-525F-455B-8339-2E2B16F7244D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64F5E2DB-525F-455B-8339-2E2B16F7244D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64F5E2DB-525F-455B-8339-2E2B16F7244D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64F5E2DB-525F-455B-8339-2E2B16F7244D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96670D88-814A-4668-99F2-8AA90CE8789B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96670D88-814A-4668-99F2-8AA90CE8789B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96670D88-814A-4668-99F2-8AA90CE8789B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96670D88-814A-4668-99F2-8AA90CE8789B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2E7D0751-99C3-40BB-B34C-F242FD075254} = {4EC23DEE-387B-4C27-B353-0E56684E4371}

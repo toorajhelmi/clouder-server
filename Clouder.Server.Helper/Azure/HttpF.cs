@@ -49,7 +49,7 @@ namespace Clouder.Server.Helper.Azure
             }
         }
 
-		public static async Task<IActionResult> Create(HttpRequest req, string colId, IndexingPolicy indexingPolicy)
+		public static async Task<IActionResult> Create(string colId, IndexingPolicy indexingPolicy)
 		{
 			try
 			{

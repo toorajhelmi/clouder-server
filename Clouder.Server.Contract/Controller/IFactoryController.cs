@@ -1,10 +1,13 @@
-﻿using System;
-using Clouder.Server.Entity;
+﻿using System.Threading.Tasks;
+using Clouder.Server.Dto;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Clouder.Server.Contract.Controller
 {
     public interface IFactoryController
     {
-        Factory Create();
+        Task<IActionResult> Create();
+        void Update(FactoryDto factory);
+        Task<FactoryDto> Get(string id);
     }
 }

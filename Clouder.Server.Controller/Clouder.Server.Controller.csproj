@@ -5,14 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Service\" />
-    <Folder Include="Controller\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Clouder.Server.Contract\Clouder.Server.Contract.csproj" />
     <ProjectReference Include="..\Clouder.Server.Entity\Clouder.Server.Entity.csproj" />
     <ProjectReference Include="..\Clouder.Server.Dto\Clouder.Server.Dto.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Class1.cs" />
+    <ProjectReference Include="..\Clouder.Server.Helper\Clouder.Server.Helper.csproj" />
   </ItemGroup>
 </Project>
