@@ -10,4 +10,10 @@
     <ProjectReference Include="..\Clouder.Server.Entity\Clouder.Server.Entity.csproj" />
     <ProjectReference Include="..\Clouder.Server.Helper\Clouder.Server.Helper.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Cadl\" />
+  </ItemGroup>
 </Project>

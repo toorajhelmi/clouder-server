@@ -20,6 +20,7 @@
     <ProjectReference Include="..\Clouder.Server.Helper\Clouder.Server.Helper.csproj" />
     <ProjectReference Include="..\Clouder.Server.Contract\Clouder.Server.Contract.csproj" />
     <ProjectReference Include="..\Clouder.Server.Controller\Clouder.Server.Controller.csproj" />
+    <ProjectReference Include="..\Clouder.Server.Service\Clouder.Server.Service.csproj" />
   </ItemGroup>
   <Target Name="AfterBuild">
     <Message Text="Copying local.setting.json" Importance="normal" />

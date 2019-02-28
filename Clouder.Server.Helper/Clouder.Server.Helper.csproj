@@ -29,4 +29,7 @@
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
     <PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.0.3" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Injection\ModuleFactory.cs" />
+  </ItemGroup>
 </Project>

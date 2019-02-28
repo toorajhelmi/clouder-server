@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Clouder.Server.Contract.Controller;
 using Clouder.Server.Controller;
 using Clouder.Server.Dto;
-using Clouder.Server.Helper.Azure;
 using Clouder.Server.Helper.Http;
 using Clouder.Server.Helper.Injection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Documents;
-using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
@@ -22,7 +16,7 @@ namespace Clouder.Server.Api.Function
     {
         static FactoryFunctions()
         {
-            Container.Instance.Register(new FactoryController());
+            Startup.Spin();
         }     
 
         [FunctionName("Factory_Create")]

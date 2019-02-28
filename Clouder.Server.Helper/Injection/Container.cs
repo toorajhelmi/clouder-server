@@ -27,9 +27,23 @@ namespace Clouder.Server.Helper.Injection
             services = new ServiceCollection();
         }
 
-        public void Register(IModule module)
+        public void RegisterSingleton<I, T>()
+            where I : class
+            where T : class, I
         {
-            module.Load(this.services);
+            services.AddSingleton<I, T>();
+
+        }
+
+        public void RegisterTransient<I, T>()
+            where I : class
+            where T : class, I
+        {
+            services.AddTransient<I, T>();
+        }
+
+        public void Build()
+        {
             serviceProvider = services.BuildServiceProvider();
         }
 

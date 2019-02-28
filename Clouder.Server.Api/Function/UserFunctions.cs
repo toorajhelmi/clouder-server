@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Clouder.Server.Api.Constant;
 using Clouder.Server.Dto;
 using Clouder.Server.Entity;
 using Clouder.Server.Helper.Azure;
@@ -13,7 +12,6 @@ using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using SendGrid.Helpers.Mail;
 
 namespace Clouder.Server.Api.Function
 {
@@ -25,6 +23,7 @@ namespace Clouder.Server.Api.Function
 
         static UserFunctions()
         {
+            Startup.Spin();
         }     
 
         [FunctionName("User_Create")]

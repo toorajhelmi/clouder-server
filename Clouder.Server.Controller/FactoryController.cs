@@ -4,24 +4,17 @@ using System.Threading.Tasks;
 using Clouder.Server.Contract.Controller;
 using Clouder.Server.Dto;
 using Clouder.Server.Helper.Azure;
-using Clouder.Server.Helper.Injection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Clouder.Server.Controller
 {
-    public class FactoryController : IFactoryController, IModule
+    public class FactoryController : IFactoryController
     {
         private const int MaxItemCount = 100;
         private const string colId = "Factory";
         private static FeedOptions feedOptions = new FeedOptions { MaxItemCount = MaxItemCount };
-
-        public void Load(IServiceCollection services)
-        {
-            services.AddSingleton<IFactoryController, FactoryController>();
-        }
 
         public Task<IActionResult> Create()
         {
