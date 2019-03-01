@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Clouder.Server.Contract.Controller;
-using Clouder.Server.Controller;
 using Clouder.Server.Dto;
 using Clouder.Server.Helper.Http;
 using Clouder.Server.Helper.Injection;
@@ -10,7 +9,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 
-namespace Clouder.Server.Api.Function
+namespace Clouder.Server.Api
 {
     public static class FactoryFunctions
     {

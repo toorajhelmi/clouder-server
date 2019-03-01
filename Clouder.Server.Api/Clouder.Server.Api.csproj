@@ -6,11 +6,6 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Constant\" />
-    <Folder Include="Exception\" />
-    <Folder Include="Function\" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Services.AppAuthentication" Version="1.0.3" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
   </ItemGroup>
@@ -21,6 +16,10 @@
     <ProjectReference Include="..\Clouder.Server.Contract\Clouder.Server.Contract.csproj" />
     <ProjectReference Include="..\Clouder.Server.Controller\Clouder.Server.Controller.csproj" />
     <ProjectReference Include="..\Clouder.Server.Service\Clouder.Server.Service.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Constant\Configuration.cs" />
+    <Compile Remove="Constant\Localization.cs" />
   </ItemGroup>
   <Target Name="AfterBuild">
     <Message Text="Copying local.setting.json" Importance="normal" />

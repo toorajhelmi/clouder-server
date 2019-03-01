@@ -13,7 +13,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 
-namespace Clouder.Server.Api.Function
+namespace Clouder.Server.Api
 {
     public static class UserFunctions
     {

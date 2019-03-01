@@ -5,6 +5,7 @@ namespace Clouder.Server.Service.Cadl
     {
         public string Source { get; set; }
         public string Target { get; set; }
+        public string Connection { get; set; }
 
         public Vertice SourceVertice => new Vertice
         {

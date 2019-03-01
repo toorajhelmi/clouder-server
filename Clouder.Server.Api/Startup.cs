@@ -5,7 +5,7 @@ using Clouder.Server.Controller;
 using Clouder.Server.Helper.Injection;
 using Clouder.Server.Service.Cadl;
 
-namespace Clouder.Server.Api.Function
+namespace Clouder.Server.Api
 {
     public static class Startup
     {
