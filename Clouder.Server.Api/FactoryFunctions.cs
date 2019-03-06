@@ -65,9 +65,19 @@ namespace Clouder.Server.Api
         [FunctionName("Factory_Add")]
         public static async Task<IActionResult> Add(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req,
-            ILogger log)
+            ILogger logger)
         {
-            return new OkObjectResult(null);
+            try
+            {
+                var factory = await req.Parse<FactoryDto>();
+                factory = await Container.Instance.Get<IFactoryController>().Add(factory);
+                return new OkObjectResult(factory);
+            }
+            catch (System.Exception e)
+            {
+                logger.LogCritical(e, "Could not update factory");
+                return new BadRequestObjectResult(e.Message);
+            }
         }
     }
 }
