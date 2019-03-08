@@ -1,11 +1,10 @@
 ﻿using System;
 using Clouder.Server.Prop;
 
-namespace Clouder.Server.Dto
+namespace Clouder.Server.Entity
 {
-    public class FactoryDto
+    public class FactorEntity : EntityBase
     {
-        public string Id { get; set; }
         public Factory Factory { get; set; }
     }
 }

@@ -6,10 +6,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Clouder.Server.Contract\Clouder.Server.Contract.csproj" />
-    <ProjectReference Include="..\Clouder.Server.Dto\Clouder.Server.Dto.csproj" />
-    <ProjectReference Include="..\Clouder.Server.Entity\Clouder.Server.Entity.csproj" />
     <ProjectReference Include="..\Clouder.Server.Helper\Clouder.Server.Helper.csproj" />
     <ProjectReference Include="..\Clouder.Server.Constant\Clouder.Server.Constant.csproj" />
+    <ProjectReference Include="..\Clouder.Server.Prop\Clouder.Server.Prop.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />

@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Clouder.Server.Contract.Controller;
 using Clouder.Server.Controller;
-using Clouder.Server.Dto;
 using Clouder.Server.Entity;
 using Clouder.Server.Helper.Azure;
 using Clouder.Server.Helper.Http;
@@ -48,34 +47,34 @@ namespace Clouder.Server.Api
             {
                 return new OkObjectResult(FactoryController.factories);
 
-                var userName = req.Parse("userName").ToLower();
-                var password = req.Parse("password");
-                var user = await NakedF.Get<Entity.User, UserDto>(colId,
-                    query => query.Where(u =>
-                                         u.Username == userName &&
-                                         u.Password == password));
+                //var userName = req.Parse("userName").ToLower();
+                //var password = req.Parse("password");
+                //var user = await NakedF.Get<Prop.User, Prop.User>(colId,
+                //    query => query.Where(u =>
+                //                         u.UserInfo.Username == userName &&
+                //                         u.UserInfo.Password == password));
 
-                LoginResponse loginResponse = new LoginResponse();
+                //var loginResponse = new LoginResponse();
 
-                if (user == null)
-                {
-                    loginResponse.WrongLogin = true;
-                }
-                else if (!user.Activated)
-                {
-                    loginResponse.NotActivated = true;
-                }
-                else if (user.Suspended)
-                {
-                    loginResponse.Suspended = true;
-                }
-                else
-                {
-                    loginResponse.Succeeded = true;
-                    loginResponse.User = user;
-                }
+                //if (user == null)
+                //{
+                //    loginResponse.WrongLogin = true;
+                //}
+                //else if (!user.Activated)
+                //{
+                //    loginResponse.NotActivated = true;
+                //}
+                //else if (user.Suspended)
+                //{
+                //    loginResponse.Suspended = true;
+                //}
+                //else
+                //{
+                //    loginResponse.Succeeded = true;
+                //    loginResponse.User = user;
+                //}
 
-                return new OkObjectResult(loginResponse);
+                //return new OkObjectResult(loginResponse);
             }
             catch (System.Exception e)
             {
@@ -88,11 +87,11 @@ namespace Clouder.Server.Api
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req,
             ILogger log)
         {
-            var user = await req.Parse<Entity.User>();
-            user.ActivationCode = System.Guid.NewGuid().ToString();
-            user.Username = user.Username.ToLower();
-            user.Email = user.Email.ToLower();
-            user = await NakedF.Add<Entity.User>(user, colId);
+            var user = await req.Parse<Prop.User>();
+            //user.ActivationCode = System.Guid.NewGuid().ToString();
+            //user.Username = user.Username.ToLower();
+            //user.Email = user.Email.ToLower();
+            //user = await NakedF.Add<Entity.User>(user, colId);
 
             //SendEmail(Localization.Instance.ActivateAcount,
                       //new EmailAddress { Email = user.Email, Name = user.FullName },
@@ -107,39 +106,40 @@ namespace Clouder.Server.Api
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequest req,
             ILogger log)
         {
-            var activationCode = req.Parse("c");
-            var userId = req.Parse("uid");
-            var user = await NakedF.Get<Entity.User>(userId, colId);
+            return new OkResult();
+            //var activationCode = req.Parse("c");
+            //var userId = req.Parse("uid");
+            //var user = await NakedF.Get<Prop.User>(userId, colId);
 
-            if (user != null && user.ActivationCode == activationCode)
-            {
-                user.Activated = true;
-                //user.Rewards = new System.Collections.Generic.List<Reward>
+            //if (user != null && user.ActivationCode == activationCode)
+            //{
+            //    user.Activated = true;
+            //    //user.Rewards = new System.Collections.Generic.List<Reward>
+            //    //{
+            //    //    new Reward
+            //    //    {
+            //    //        Credit = earlyUserReward.Prize,
+            //    //        Description = string.Format(earlyUserReward.Description, earlyUserReward.Prize),
+            //    //        Code = (int)earlyUserReward.LotteryType
+            //    //    }
+            //    //};
+
+            //    await NakedF.Update<Entity.User>(user, colId);
+
+            //    return new ContentResult
+            //    {
+            //        Content = "content",
+            //        ContentType = "text/html;charset=UTF-8"
+            //    };
+            //}
+            //else
+            //{
+                //return new ContentResult
                 //{
-                //    new Reward
-                //    {
-                //        Credit = earlyUserReward.Prize,
-                //        Description = string.Format(earlyUserReward.Description, earlyUserReward.Prize),
-                //        Code = (int)earlyUserReward.LotteryType
-                //    }
+                //    Content = "",
+                //    ContentType = "text/html;charset=UTF-8",
                 //};
-
-                await NakedF.Update<Entity.User>(user, colId);
-
-                return new ContentResult
-                {
-                    Content = "content",
-                    ContentType = "text/html;charset=UTF-8"
-                };
-            }
-            else
-            {
-                return new ContentResult
-                {
-                    Content = "",
-                    ContentType = "text/html;charset=UTF-8",
-                };
-            }
+            //}
         }
 
         [FunctionName("User_Update")]
@@ -147,7 +147,8 @@ namespace Clouder.Server.Api
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req,
             ILogger log)
         {
-            return await HttpF.Update<Entity.User>(req, colId);
+            //return await HttpF.Update<Entity.User>(req, colId);
+            return new OkResult();
         }
 
         [FunctionName("User_IsUsernameTaken")]
@@ -155,26 +156,27 @@ namespace Clouder.Server.Api
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequest req,
             ILogger log)
         {
-            var userName = req.Parse("userName");
-            var email = req.Parse("email");
-            var users = await NakedF.Get<Entity.User, UserDto>(
-                colId, feedOptions, query =>
-                query.Where(u => u.Username == userName.ToLower()));
-            var accountExistsRepsonse = new AccountExistsResponse();
-            if (users.Any())
-            {
-                accountExistsRepsonse.UsernameTaken = true;
-            }
+            //var userName = req.Parse("userName");
+            //var email = req.Parse("email");
+            //var users = await NakedF.Get<Entity.User, UserDto>(
+            //    colId, feedOptions, query =>
+            //    query.Where(u => u.Username == userName.ToLower()));
+            //var accountExistsRepsonse = new AccountExistsResponse();
+            //if (users.Any())
+            //{
+            //    accountExistsRepsonse.UsernameTaken = true;
+            //}
 
-            users = await NakedF.Get<Entity.User, UserDto>(
-                colId, feedOptions, query =>
-                query.Where(u => u.Email == email.ToLower()));
-            if (users.Any())
-            {
-                accountExistsRepsonse.EmailTaken = true;
-            }
+            //users = await NakedF.Get<Entity.User, UserDto>(
+            //    colId, feedOptions, query =>
+            //    query.Where(u => u.Email == email.ToLower()));
+            //if (users.Any())
+            //{
+            //    accountExistsRepsonse.EmailTaken = true;
+            //}
 
-            return new OkObjectResult(accountExistsRepsonse);
+            //return new OkObjectResult(accountExistsRepsonse);
+            return new OkResult();
         }
 
         //private static async void SendEmail(string subject, EmailAddress to, string template, Entity.User user)

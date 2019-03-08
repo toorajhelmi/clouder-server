@@ -6,8 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Clouder.Server.Contract\Clouder.Server.Contract.csproj" />
-    <ProjectReference Include="..\Clouder.Server.Entity\Clouder.Server.Entity.csproj" />
-    <ProjectReference Include="..\Clouder.Server.Dto\Clouder.Server.Dto.csproj" />
     <ProjectReference Include="..\Clouder.Server.Helper\Clouder.Server.Helper.csproj" />
+    <ProjectReference Include="..\Clouder.Server.Prop\Clouder.Server.Prop.csproj" />
   </ItemGroup>
 </Project>

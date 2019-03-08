@@ -1,5 +1,5 @@
-﻿using System;
-using Clouder.Server.Entity;
+﻿
+using Clouder.Server.Prop;
 
 namespace Clouder.Server.Contract.Service
 {

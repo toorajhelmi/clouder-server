@@ -5,6 +5,6 @@ namespace Clouder.Server.Contract.Controller
 {
     public interface ICadlController
     {
-        Task<string> Get(string factoryId);
+        Task<string> Get(int factoryId);
     }
 }

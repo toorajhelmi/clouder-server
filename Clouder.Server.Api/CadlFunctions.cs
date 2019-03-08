@@ -24,7 +24,7 @@ namespace Clouder.Server.Api
         {
             try
             {
-                var factoryId = req.Parse("id").ToLower();
+                var factoryId = int.Parse(req.Parse("id"));
                 return new OkObjectResult(await Container.Instance.Get<ICadlController>().Get(factoryId));
             }
             catch (System.Exception e)

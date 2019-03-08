@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Clouder.Server.Contract.Controller;
-using Clouder.Server.Dto;
-using Clouder.Server.Helper.Azure;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Documents;
+using Clouder.Server.Prop;
 using Microsoft.Azure.Documents.Client;
 
 namespace Clouder.Server.Controller
@@ -16,41 +13,33 @@ namespace Clouder.Server.Controller
         private const int MaxItemCount = 100;
         private const string colId = "Factory";
         private static FeedOptions feedOptions = new FeedOptions { MaxItemCount = MaxItemCount };
-        public static List<FactoryDto> factories;
+        public static List<Factory> factories;
 
         static FactoryController()
         {
-            factories = new List<FactoryDto>
+            factories = new List<Factory>
             {
-                new FactoryDto { Id = "1".ToString(), Name = "Factory 1",
+                new Factory { FactoryId = 1, Name = "Factory 1",
                     Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit"},
-                new FactoryDto { Id = "2", Name = "Factory 2", Description = "E-Commerce"},
-                new FactoryDto { Id = "3", Name = "Factory 3", Description = "Ticketing"},
-                new FactoryDto { Id = "4", Name = "Factory 4", Description = "Trading"},
-                new FactoryDto { Id = "5", Name = "Factory 5", Description = "Media"},
-                new FactoryDto { Id = "6", Name = "Factory 6", Description = "Multi-tennant"},
+                new Factory { FactoryId = 2, Name = "Factory 2", Description = "E-Commerce"},
+                new Factory { FactoryId = 3, Name = "Factory 3", Description = "Ticketing"},
+                new Factory { FactoryId = 4, Name = "Factory 4", Description = "Trading"},
+                new Factory { FactoryId = 5, Name = "Factory 5", Description = "Media"},
+                new Factory { FactoryId = 6, Name = "Factory 6", Description = "Multi-tennant" },
             };
         }
 
-        public Task<IActionResult> Create()
+        public void Update(Factory factory)
         {
-            return HttpF.Create(colId, new IndexingPolicy(new HashIndex(DataType.Number))
-            {
-                IndexingMode = IndexingMode.Consistent,
-            });
-        }
-
-        public void Update(FactoryDto factory)
-        {
-            factories.Remove(factories.First(f => f.Id == factory.Id));
+            factories.Remove(factories.First(f => f.FactoryId == factory.FactoryId));
             factories.Add(factory);
             
             //return await HttpF.Update<Entity.Factory>(req, colId);
         }
     
-        public Task<FactoryDto> Get(string id)
+        public Task<Factory> Get(int id)
         {
-            var factory = factories.First(f => f.Id == id);
+            var factory = factories.First(f => f.FactoryId == id);
             if (factory.Diagram != null)
             {
                 return Task.FromResult(factory);
@@ -64,9 +53,9 @@ namespace Clouder.Server.Controller
             }
         }
 
-        public Task<FactoryDto> Add(FactoryDto factory)
+        public Task<Factory> Add(Factory factory)
         {
-            factory.Id = Guid.NewGuid().ToString();
+            factory.FactoryId = factories.Count;
             factories.Add(factory);
             return Task.FromResult(factory);
         }

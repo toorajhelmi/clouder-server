@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Clouder.Server.Contract.Controller;
-using Clouder.Server.Dto;
 using Clouder.Server.Helper.Http;
 using Clouder.Server.Helper.Injection;
+using Clouder.Server.Prop;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -18,20 +18,12 @@ namespace Clouder.Server.Api
             Startup.Spin();
         }     
 
-        [FunctionName("Factory_Create")]
-        public static async Task<IActionResult> CreateFactory(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequest req,
-            ILogger logger)
-        {
-            return await Container.Instance.Get<IFactoryController>().Create();
-        }
-
         [FunctionName("Factory_Update")]
         public static async Task<IActionResult> UpdateFactory(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req,
             ILogger logger)
         {
-            var factory = await req.Parse<FactoryDto>();
+            var factory = await req.Parse<Factory>();
 
             try
             {
@@ -52,7 +44,7 @@ namespace Clouder.Server.Api
         {
             try
             {
-                var factoryId = req.Parse("id").ToLower();
+                var factoryId = int.Parse(req.Parse("id"));
                 return new OkObjectResult(await Container.Instance.Get<IFactoryController>().Get(factoryId));
             }
             catch (System.Exception e)
@@ -69,7 +61,7 @@ namespace Clouder.Server.Api
         {
             try
             {
-                var factory = await req.Parse<FactoryDto>();
+                var factory = await req.Parse<Factory>();
                 factory = await Container.Instance.Get<IFactoryController>().Add(factory);
                 return new OkObjectResult(factory);
             }

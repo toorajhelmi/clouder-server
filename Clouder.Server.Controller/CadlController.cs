@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using Clouder.Server.Contract.Controller;
 using Clouder.Server.Contract.Service;
-using Clouder.Server.Entity;
 using Clouder.Server.Helper.Injection;
+using Clouder.Server.Prop;
 
 namespace Clouder.Server.Controller
 {
@@ -13,7 +13,7 @@ namespace Clouder.Server.Controller
         {
         }
 
-        public Task<string> Get(string factoryId)
+        public Task<string> Get(int factoryId)
         {
             //TGet Factory
             var factory = new Factory();

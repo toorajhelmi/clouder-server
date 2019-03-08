@@ -9,10 +9,9 @@
     <Folder Include="Controller\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Clouder.Server.Entity\Clouder.Server.Entity.csproj" />
-    <ProjectReference Include="..\Clouder.Server.Dto\Clouder.Server.Dto.csproj" />
+    <Compile Remove="Class1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Class1.cs" />
+    <ProjectReference Include="..\Clouder.Server.Prop\Clouder.Server.Prop.csproj" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Clouder.Server.Entity
+﻿namespace Clouder.Server.Prop
 {
     public enum ResultCode
     {

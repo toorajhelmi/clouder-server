@@ -1,13 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Admin", "Clouder.Server.Admin\Clouder.Server.Admin.csproj", "{644042A8-5B01-4DFA-B30D-39F2749B4592}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Api.Test", "Clouder.Server.Api.Test\Clouder.Server.Api.Test.csproj", "{2E7D0751-99C3-40BB-B34C-F242FD075254}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Dto", "Clouder.Server.Dto\Clouder.Server.Dto.csproj", "{766473DC-13D8-4DE0-BCB3-483AD48890F0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Entity", "Clouder.Server.Entity\Clouder.Server.Entity.csproj", "{2C82131D-93E3-4198-84DC-713CBF10EAB8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Contract", "Clouder.Server.Contract\Clouder.Server.Contract.csproj", "{5AF36B90-B06E-4E07-9D77-748BDD573C32}"
 EndProject
@@ -23,28 +17,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Service", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Constant", "Clouder.Server.Constant\Clouder.Server.Constant.csproj", "{7F8D2D97-7E16-4574-A267-0E52DB26E6DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clouder.Server.Prop", "Clouder.Server.Prop\Clouder.Server.Prop.csproj", "{AA255AB0-8D69-442E-82B9-42432773865F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{644042A8-5B01-4DFA-B30D-39F2749B4592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{644042A8-5B01-4DFA-B30D-39F2749B4592}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{644042A8-5B01-4DFA-B30D-39F2749B4592}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{644042A8-5B01-4DFA-B30D-39F2749B4592}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2E7D0751-99C3-40BB-B34C-F242FD075254}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2E7D0751-99C3-40BB-B34C-F242FD075254}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E7D0751-99C3-40BB-B34C-F242FD075254}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E7D0751-99C3-40BB-B34C-F242FD075254}.Release|Any CPU.Build.0 = Release|Any CPU
-		{766473DC-13D8-4DE0-BCB3-483AD48890F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{766473DC-13D8-4DE0-BCB3-483AD48890F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{766473DC-13D8-4DE0-BCB3-483AD48890F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{766473DC-13D8-4DE0-BCB3-483AD48890F0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2C82131D-93E3-4198-84DC-713CBF10EAB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C82131D-93E3-4198-84DC-713CBF10EAB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C82131D-93E3-4198-84DC-713CBF10EAB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C82131D-93E3-4198-84DC-713CBF10EAB8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5AF36B90-B06E-4E07-9D77-748BDD573C32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5AF36B90-B06E-4E07-9D77-748BDD573C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AF36B90-B06E-4E07-9D77-748BDD573C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +53,10 @@ Global
 		{7F8D2D97-7E16-4574-A267-0E52DB26E6DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F8D2D97-7E16-4574-A267-0E52DB26E6DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F8D2D97-7E16-4574-A267-0E52DB26E6DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA255AB0-8D69-442E-82B9-42432773865F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA255AB0-8D69-442E-82B9-42432773865F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA255AB0-8D69-442E-82B9-42432773865F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA255AB0-8D69-442E-82B9-42432773865F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2E7D0751-99C3-40BB-B34C-F242FD075254} = {4EC23DEE-387B-4C27-B353-0E56684E4371}

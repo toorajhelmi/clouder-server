@@ -2,32 +2,19 @@
 using System.Collections.Generic;
 using Clouder.Server.Entity;
 using Newtonsoft.Json;
+using Clouder.Server.Prop;
 
 namespace Clouder.Server.Dto
 {
     public class UserDto 
     {
-        public UserDto(User user)
+        public UserDto(UserEntity userEntity)
         {
-            Id = user.Id;
-            Username = user.Username;
-            Password = user.Password;
-            Activated = user.Activated;
-            Suspended = user.Suspended;
-            Email = user.Email;
-            Address = user.Address;
-            FirstName = user.FirstName;
-            LastName = user.LastName;
+            Id = userEntity.Id;
+            User = userEntity.User;
         }
 
         public string Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public bool Activated { get; set; }
-        public bool Suspended { get; set; }
-        public string Email { get; set; }
-        public Address Address { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public User User { get; set; }
     }
 }
